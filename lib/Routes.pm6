@@ -1,8 +1,7 @@
 use Cro::HTTP::Router;
-# use lib '.';
-# use lib::Controller::General;
+use CK;
 
-sub routes() is export {
+sub routes(CK $ck) is export {
     route {
         get -> {
             static 'static/index.html'

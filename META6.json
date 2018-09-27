@@ -3,7 +3,9 @@
     "source": "Write me!"
   },
   "depends": [
-    "Cro::HTTP"
+    "Cro::HTTP",
+    "Cro::WebSocket",
+    "OO::Monitors"
   ],
   "license": "Write me!",
   "tags": [
