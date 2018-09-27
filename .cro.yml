@@ -1,0 +1,15 @@
+---
+endpoints: 
+  - 
+    host-env: CRAIGKAISER_HOST
+    protocol: http
+    id: http
+    name: HTTP
+    port-env: CRAIGKAISER_PORT
+env:  []
+links:  []
+entrypoint: service.p6
+id: craigkaiser
+name: craigkaiser
+cro: 1
+...

@@ -1,0 +1,7 @@
+# Caches
+.precomp/
+node_modules/
+
+# Backup files
+*~
+node_modules/
