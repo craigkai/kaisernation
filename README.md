@@ -21,3 +21,14 @@ You can also build and run a docker image while in the app root using:
 docker build -t craigkaiser .
 docker run --rm -p 10000:10000 craigkaiser
 ```
+
+# Craigs Notes:
+
+## Perl6
+    Perl 6 is a member of the Perl family of programming languages
+
+## React
+    A JavaScript library for building user interfaces
+
+## Redux
+    A JavaScript library for building user interfaces

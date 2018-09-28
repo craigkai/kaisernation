@@ -1,52 +1,48 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { createStore } from 'redux';
-import { Provider, connect } from 'react-redux';
-import * as Actions from './actions';
-import { tipsyReducer } from './reducer';
+import NavBar from './components/Nav/nav';
+import PageLayout from './components/PageLayout/page-layout';
 
-var SubmitTip = props => (
+
+var Index = props => (
     <div>
-        <h2>Got a tip?</h2>
-        <div>
-            <textarea rows="2" cols="100" maxLength="200"
-                value={props.tipText}
-                onChange={e => props.onChangeTipText(e.target.value)} />
-        </div>
-        <input type="button" value="Add Tip" onClick={props.onAddTip} />
+        <PageLayout>
+            <NavBar />
+            Welcome
+        </PageLayout>
     </div>
 );
 
-var LatestTips = () => (
+var Code = props => (
     <div>
-        <h2>Latest Tips</h2>
-        TODO
+        <PageLayout>
+            <NavBar />
+            Welcome To My Code Page!
+        </PageLayout>
     </div>
 );
 
-var App = props => (
+var Work = props => (
     <div>
-        <SubmitTip tipText={props.tipText}
-            onChangeTipText={props.onChangeTipText}
-            onAddTip={props.onAddTip} />
-        <LatestTips />
+        <PageLayout>
+            <NavBar />
+            Welcome To My Work Page!
+        </PageLayout>
     </div>
 );
 
-function mapProps(state) {
-    return state;
-}
-function mapDispatch(dispatch) {
-    return {
-        onChangeTipText: text => dispatch(Actions.changeTipText(text)),
-        onAddTip: text => dispatch(Actions.addTip())
-    };
-}
+var apps = {Index, Work, Code};
 
-let store = createStore(tipsyReducer);
-let ConnectedApp = connect(mapProps, mapDispatch)(App);
-render(
-    <Provider store={store}>
-        <ConnectedApp />
-    </Provider>,
-    document.getElementById('app'));
+function renderAppInElement(el) {
+    var App = apps[el.id];
+    if (!App) return;
+
+    // get props from elements data attribute, like the post_id
+    const props = Object.assign({}, el.dataset);
+  
+    render(<App {...props} />, el);
+  }
+
+document
+.querySelectorAll('.__react-root')
+.forEach(renderAppInElement)

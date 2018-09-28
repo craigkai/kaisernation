@@ -3,9 +3,9 @@
   <head>
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="utf-8" http-equiv="encoding">
-    <title><%= %h<name> %></title>
+    <title><%= %h<Title> %></title>
   </head>
   <body>
-      <div id="Index" class="__react-root"></div>  
+      <div id="<%= %h<pageId> %>" class="__react-root"></div>  
     <script type="text/javascript" src="js/bundle.js"></script></body>
 </html>
