@@ -27,8 +27,30 @@ docker run --rm -p 10000:10000 craigkaiser
 ## Perl6
     Perl 6 is a member of the Perl family of programming languages
 
+### REPL
+<code>3.^name</code>
+<code>3.^mro</code>
+<code>3.^methods</code>
+
+#### Hashes
+<code>my %data = First => 1, Second => 2</code>
+<code>put %name<First></code> # 1
+
+<code>my $immutable := 1</code> # Cannot change because of `:=`
+
+**Binding**
+<code>my $second := $thing</code>
+
+
+<code>do if $number %% 2 ?? {'even'} !! {'odd'};</code>
 ## React
     A JavaScript library for building user interfaces
+
+### Containers
+Should handle data fetching and methods.
+
+### Components
+Only concerned with rendering.
 
 ## Redux
     A JavaScript library for building user interfaces

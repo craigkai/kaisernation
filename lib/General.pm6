@@ -14,7 +14,3 @@ method testing (--> Supply) {
         }
     }
 }
-
-method ValidateUser {
-    
-}

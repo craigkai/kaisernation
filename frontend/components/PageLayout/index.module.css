@@ -418,3 +418,16 @@
   .centered {
     text-align: center;
   }
+
+.container {
+    position: absolute;
+    width: 100%;
+    top: 30%;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0em;
+  text-align: center;
+  width: 100%;
+}

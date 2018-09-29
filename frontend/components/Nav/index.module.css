@@ -178,3 +178,7 @@
 .pure-menu-selected .pure-menu-link:visited {
     color: #000;
 }
+
+.background {
+    color: antiquewhite;
+}

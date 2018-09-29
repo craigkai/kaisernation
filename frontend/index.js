@@ -1,48 +1,38 @@
 import React from 'react';
 import { render } from 'react-dom';
-import NavBar from './components/Nav/nav';
-import PageLayout from './components/PageLayout/page-layout';
 
+import { BrowserRouter, Route } from 'react-router-dom'
+import { Switch } from 'react-router'; 
 
-var Index = props => (
-    <div>
-        <PageLayout>
-            <NavBar />
-            Welcome
-        </PageLayout>
-    </div>
+// React Components
+import Code from './pages/code';
+import Work from './pages/work';
+import Landing from './pages/landing';
+
+// REDUX
+import { createStore } from 'redux';
+import { Provider, connect } from 'react-redux';
+import { messageReducer } from './reducer';
+
+var App = props => (
+    <BrowserRouter>
+        <Switch>
+            <Route exact path="/" component={Landing}/>
+            <Route exact path="/work" component={Work}/>
+            <Route exact path="/code" component={Code}/>
+        </Switch>
+    </BrowserRouter>
 );
 
-var Code = props => (
-    <div>
-        <PageLayout>
-            <NavBar />
-            Welcome To My Code Page!
-        </PageLayout>
-    </div>
-);
+function mapProps(state) {
+    return state;
+}
 
-var Work = props => (
-    <div>
-        <PageLayout>
-            <NavBar />
-            Welcome To My Work Page!
-        </PageLayout>
-    </div>
-);
+let store = createStore(messageReducer);
+let ConnectedApp = connect(mapProps)(App);
 
-var apps = {Index, Work, Code};
-
-function renderAppInElement(el) {
-    var App = apps[el.id];
-    if (!App) return;
-
-    // get props from elements data attribute, like the post_id
-    const props = Object.assign({}, el.dataset);
-  
-    render(<App {...props} />, el);
-  }
-
-document
-.querySelectorAll('.__react-root')
-.forEach(renderAppInElement)
+render(
+    <Provider store={store}>
+        <ConnectedApp />
+    </Provider>,
+document.getElementById('container'));

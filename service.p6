@@ -1,14 +1,19 @@
 use Cro::HTTP::Log::File;
 use Cro::HTTP::Server;
 use Routes;
+
+# Models
 use General;
+use Review;
 use DBIish;
 
 my $general = General.new(
     db    => DBIish.connect("SQLite", :database<db/ck.db>),
 );
 
-my $application = routes($general);
+my $review = Review.new();
+
+my $application = routes($general, $review);
 
 my Cro::Service $http = Cro::HTTP::Server.new(
     http => <1.1>,

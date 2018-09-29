@@ -1,6 +1,7 @@
 use Cro::HTTP::Router;
 use Cro::HTTP::Router::WebSocket;
 use JSON::Fast;
+use Review;
 use General;
 use Template::Mojo;
 
@@ -20,7 +21,8 @@ class UserSession does Cro::HTTP::Auth {
     }
 }
 
-sub routes(General $general) is export {
+sub routes(General $general, Review $review) is export {
+    my $t = Template::Mojo.from-file('static/index.tm');
     route {
         subset LoggedIn of UserSession where *.logged-in;
 
@@ -29,7 +31,6 @@ sub routes(General $general) is export {
         }
 
         get -> {
-            my $t = Template::Mojo.from-file('static/index.tm');
             content 'text/html', $t.render(
                 {
                     pageId => 'Index',
@@ -39,7 +40,6 @@ sub routes(General $general) is export {
         }
 
         get -> 'work' {
-            my $t = Template::Mojo.from-file('static/index.tm');
             content 'text/html', $t.render(
                 {
                     pageId => 'Index',
@@ -49,7 +49,6 @@ sub routes(General $general) is export {
         }
 
         get -> 'code' {
-            my $t = Template::Mojo.from-file('static/index.tm');
             content 'text/html', $t.render(
                 {
                     pageId  => 'Index',
@@ -64,6 +63,29 @@ sub routes(General $general) is export {
 
         get -> 'css', *@path {
             static 'static/css/pure', @path;
+        }
+
+
+        # Review
+        post -> 'review' {
+            request-body -> (:$message) {
+                $review.add-tip($message);
+                response.status = 204;
+            }
+        }
+        # SOCKETS
+        my $incoming_review = Supplier.new;
+        get -> 'review' {
+            web-socket -> $incoming {
+                supply {
+                    whenever $incoming -> $message {
+                        $incoming_review.emit(await $message.body-text);
+                    }
+                    whenever $incoming_review -> $message {
+                        emit $message;
+                    }
+                }
+            }
         }
     }
 }

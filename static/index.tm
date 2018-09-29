@@ -6,6 +6,6 @@
     <title><%= %h<Title> %></title>
   </head>
   <body>
-      <div id="<%= %h<pageId> %>" class="__react-root"></div>  
+      <div id="container"></div>  
     <script type="text/javascript" src="js/bundle.js"></script></body>
 </html>
