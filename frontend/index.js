@@ -1,35 +1,39 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import { BrowserRouter, Route } from 'react-router-dom'
-import { Switch } from 'react-router'; 
-
-// React Components
-import Code from './pages/code';
-import Work from './pages/work';
-import Landing from './pages/landing';
+import App from './components/app';
+import * as Actions from './actions';
 
 // REDUX
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider, connect } from 'react-redux';
 import { messageReducer } from './reducer';
+import thunkMiddleware from 'redux-thunk';
 
-var App = props => (
-    <BrowserRouter>
-        <Switch>
-            <Route exact path="/" component={Landing}/>
-            <Route exact path="/work" component={Work}/>
-            <Route exact path="/code" component={Code}/>
-        </Switch>
-    </BrowserRouter>
-);
+// Web Socket
+import WSAction from 'redux-websocket-action';
 
 function mapProps(state) {
     return state;
 }
+function mapDispatch(dispatch) {
+    return {
+        onChangeMessageText: message => dispatch(Actions.changeMessageText(message)),
+        onChangeAuthorText: author => dispatch(Actions.onChangeAuthorText(author)),
+        onAddMessage: (message, author) => dispatch(Actions.addMessage()),
+    };
+}
 
-let store = createStore(messageReducer);
-let ConnectedApp = connect(mapProps)(App);
+let store = createStore(messageReducer, applyMiddleware(thunkMiddleware));
+
+let host = window.location.host;
+let wsAction = new WSAction(store, 'ws://' + host + '/latest-reviews', {
+    retryCount:3,
+    reconnectInterval: 3
+});
+wsAction.start();
+
+let ConnectedApp = connect(mapProps, mapDispatch)(App);
 
 render(
     <Provider store={store}>

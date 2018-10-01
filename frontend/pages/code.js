@@ -10,7 +10,7 @@ class Code extends React.PureComponent {
             <div>
                 <PageLayout>
                     <NavBar />
-                    <Chat>
+                    <Chat proper={this.props.proper} >
                         Other components Here
                     </Chat>
                 </PageLayout>

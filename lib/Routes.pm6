@@ -12,7 +12,6 @@ second and add +1 to a value.
 
 =end head2
 
-
 class UserSession does Cro::HTTP::Auth {
     has $.username is rw;
 
@@ -33,8 +32,15 @@ sub routes(General $general, Review $review) is export {
         get -> {
             content 'text/html', $t.render(
                 {
-                    pageId => 'Index',
                     Title  => 'Welcome!'
+                }
+            );
+        }
+
+        get -> 'test' {
+            content 'text/html', $t.render(
+                {
+                    Title   => 'Craig\'s Work!'
                 }
             );
         }
@@ -42,7 +48,6 @@ sub routes(General $general, Review $review) is export {
         get -> 'work' {
             content 'text/html', $t.render(
                 {
-                    pageId => 'Index',
                     Title   => 'Craig\'s Work!'
                 }
             );
@@ -51,7 +56,6 @@ sub routes(General $general, Review $review) is export {
         get -> 'code' {
             content 'text/html', $t.render(
                 {
-                    pageId  => 'Index',
                     Title   => 'Craig\'s Code!'
                 }
             );
@@ -65,11 +69,9 @@ sub routes(General $general, Review $review) is export {
             static 'static/css/pure', @path;
         }
 
-
-        # Review
         post -> 'review' {
-            request-body -> (:$message) {
-                $review.add-tip($message);
+            request-body -> (:$message, :$author) {
+                $review.add-message($message, $author);
                 response.status = 204;
             }
         }
@@ -78,11 +80,26 @@ sub routes(General $general, Review $review) is export {
         get -> 'review' {
             web-socket -> $incoming {
                 supply {
-                    whenever $incoming -> $message {
-                        $incoming_review.emit(await $message.body-text);
+                    whenever $incoming -> $message, $author {
+                        $incoming_review.emit(await $message.body-text, $author.body-text);
                     }
-                    whenever $incoming_review -> $message {
-                        emit $message;
+                    whenever $incoming_review -> $message, $author {
+                        emit $message, $author;
+                    }
+                }
+            }
+        }
+        get -> 'latest-reviews' {
+            web-socket -> $incoming {
+                supply whenever $review.latest-reviews -> $review {
+                    emit to-json {
+                        WS_ACTION => True,
+                        action => {
+                            type => 'LATEST_REVIEWS',
+                            id => $review.id,
+                            message => $review.message,
+                            author  => $review.author
+                        }
                     }
                 }
             }
