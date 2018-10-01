@@ -11,7 +11,7 @@ class PageLayout extends React.PureComponent {
                     </div>
                 </div>
                 <footer className={styles.footer}>
-                    This is a footer
+                source code on <a href="https://github.com/craigkai/kaisernation">github</a> (Be kind with your judgements)
                 </footer>
             </div>
         )
