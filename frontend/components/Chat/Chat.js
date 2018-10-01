@@ -6,6 +6,11 @@ import PageLayout from '../../components/PageLayout/PageLayout';
 class Chat extends React.PureComponent {
     render() {
       const root = this.props.proper;
+      var latestReviews = root.latestReviews;
+      latestReviews = latestReviews.slice(
+            latestReviews.length-10 > 0 ? latestReviews.length-10 : 0,
+            latestReviews.length
+      );
       return (
         <div>
           <PageLayout>
@@ -20,7 +25,7 @@ class Chat extends React.PureComponent {
             <div className={styles['pure-u-md-2-3']} />
             <div className={styles['pure-u-md-1-3']}>
                 <h2>Comments:</h2>
-                {root.latestReviews.map(r => <p key={r.id}>[ {r.author} ] {r.message}</p>)}
+                {latestReviews.map(r => <p key={r.id}>[ {r.author} ] {r.message}</p>)}
                   <textarea
                       value={root.message}
                       onChange={e => root.onChangeMessageText(e.target.value)} />
