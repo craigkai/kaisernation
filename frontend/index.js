@@ -19,7 +19,7 @@ function mapProps(state) {
 function mapDispatch(dispatch) {
     return {
         onChangeMessageText: message => dispatch(Actions.changeMessageText(message)),
-        onChangeAuthorText: author => dispatch(Actions.onChangeAuthorText(author)),
+        onChangeAuthorText : author  => dispatch(Actions.onChangeAuthorText(author)),
         onAddMessage: (message, author) => dispatch(Actions.addMessage()),
     };
 }

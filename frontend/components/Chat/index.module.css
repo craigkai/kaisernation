@@ -1852,3 +1852,7 @@ since IE8 won't execute CSS that contains a CSS3 selector.
     color: #666;
     font-size: 0.875em;
 }
+
+.chat-top {
+    top: 5px;
+}

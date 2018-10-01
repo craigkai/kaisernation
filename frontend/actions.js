@@ -1,8 +1,8 @@
 import $ from 'jquery';
 
 export const CHANGE_REVIEW_MESSAGE = 'CHANGE_REVIEW_MESSAGE TEXT';
-export const ADD_REVIEW = 'ADD_REVIEW';
-export const CHANGE_AUTHOR = 'CHANGE_AUTHOR';
+export const ADD_REVIEW     = 'ADD_REVIEW';
+export const CHANGE_AUTHOR  = 'CHANGE_AUTHOR';
 export const LATEST_REVIEWS = 'LATEST_REVIEWS';
 
 
