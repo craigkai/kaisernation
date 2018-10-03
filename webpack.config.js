@@ -26,6 +26,16 @@ module.exports = {
                 test: /\.css$/,
                 loader: 'css-loader',
                 options: { modules: true }
+            },
+            {
+                test: /\.(gif|png|jpe?g|svg)$/i,
+                use: [
+                    {
+                    loader: 'file-loader',
+                    options: {
+                        name: '[path][name]-[hash:8].[ext]',
+                    },
+                }],
             }
         ]
     }

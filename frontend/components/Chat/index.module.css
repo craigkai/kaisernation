@@ -1,20 +1,28 @@
-@media only screen and (min-width : 500px) {
-    .chat-container {
-        top: 5px;
-        text-align: right;
-        padding-right: 10%;
-    }
+.chat-container {
+    top: 0px;
+    text-align: left;
+    position: absolute;
+    display: block;
+    padding: 5px 5px 5px 5px;
+    right: 10px;
+    white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    white-space: pre-wrap;       /* css-3 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    white-space: -webkit-pre-wrap; /* Newer versions of Chrome/Safari*/
+    word-break: break-all;
+    white-space: normal;
+    width: 20%;
 }
-
-@media only screen and (max-width : 480px) {
+/* Mobile */
+@media only screen
+and (min-device-width : 0px) 
+and (max-device-width : 480px) {
     .chat-container {
-        position: absolute;
-        bottom: 3em;
+        align-self: center;
+        justify-self: center;
         text-align: center;
-        width: 100%;
-        padding-top: 5px;
+        position: relative;
     }
 }
-
-/* .chat-content {
-} */

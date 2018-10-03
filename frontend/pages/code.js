@@ -8,7 +8,7 @@ class Code extends React.PureComponent {
         return (
             <div>
                 <Chat proper={this.props.proper}>
-                    <Block></Block>
+                    {/* <Block /> */}
                 </Chat>
             </div>
         );
