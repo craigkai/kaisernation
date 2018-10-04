@@ -21,6 +21,7 @@ and (min-device-width : 0px)
 and (max-device-width : 480px) {
     .chat-container {
         align-self: center;
+        width: 100%;
         justify-self: center;
         text-align: center;
         position: relative;
