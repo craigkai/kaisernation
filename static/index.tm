@@ -7,6 +7,6 @@
     <title><%= %h<Title> %></title>
   </head>
   <body>
-      <div id="container"></div>  
+      <div id="container"></div>
     <script type="text/javascript" src="js/bundle.js"></script></body>
 </html>

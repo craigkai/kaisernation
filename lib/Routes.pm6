@@ -37,36 +37,12 @@ sub routes(General $general, Review $review) is export {
             );
         }
 
-        get -> 'test' {
-            content 'text/html', $t.render(
-                {
-                    Title   => 'Craig\'s Work!'
-                }
-            );
-        }
-
-        get -> 'work' {
-            content 'text/html', $t.render(
-                {
-                    Title   => 'Craig\'s Work!'
-                }
-            );
-        }
-
-        get -> 'code' {
-            content 'text/html', $t.render(
-                {
-                    Title   => 'Craig\'s Code!'
-                }
-            );
-        }
-
         get -> 'js', *@path {
             static 'static/js', @path
         }
 
         get -> 'css', *@path {
-            static 'static/css/pure', @path;
+            static 'static/css', @path;
         }
 
         post -> 'review' {

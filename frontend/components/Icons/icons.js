@@ -1,3 +1,7 @@
-export { default as Redux } from '../../../static/images/icons/redux.svg'
-export { default as ReactiveX } from '../../../static/images/icons/reactivex.svg'
-export { default as MySql } from '../../../static/images/icons/mysql.svg'
+export { default as Redux } from './icons/redux'
+export { default as ReactiveX } from './icons/react'
+export { default as MySQL } from './icons/mysql'
+export { default as KE } from './icons/ke';
+export { default as Perl5 } from './icons/perl5';
+export { default as Python } from './icons/python';
+export { default as Linux } from './icons/linux';

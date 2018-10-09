@@ -1,3 +1,26 @@
-.info-block-container {
-    
+/* Mobile */
+@media only screen
+and (min-device-width : 0px) 
+and (max-device-width : 480px) {
+    .info-block-container {
+        display: flex;
+        width: 100%;
+        text-align: left;
+    }
+    .icons {
+        text-align: left;
+        display: inline;
+    }
+}
+
+@media only screen
+and (min-device-width : 1228px) {
+  .info-block-container {
+        display: flex;
+        width: 75%;
+        text-align: left;
+  }
+  .icons {
+    display: flex;
+  }
 }

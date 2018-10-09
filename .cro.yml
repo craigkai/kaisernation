@@ -12,4 +12,6 @@ entrypoint: service.p6
 id: craigkaiser
 name: craigkaiser
 cro: 1
+ignore:
+  - node_modules/
 ...

@@ -1,7 +1,7 @@
 .chat-container {
     top: 0px;
     text-align: left;
-    position: absolute;
+    position: fixed;
     display: block;
     padding: 5px 5px 5px 5px;
     right: 10px;

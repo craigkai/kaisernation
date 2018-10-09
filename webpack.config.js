@@ -1,5 +1,4 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
     entry: './frontend/index.js',
@@ -8,9 +7,6 @@ module.exports = {
         filename: 'js/bundle.js',
         path: path.resolve(__dirname, 'static')
     },
-    // plugins: [
-    //     new HtmlWebpackPlugin({template : './static/index.tm'})
-    // ],
     module : {
         rules : [
             {
@@ -28,15 +24,15 @@ module.exports = {
                 options: { modules: true }
             },
             {
-                test: /\.(gif|png|jpe?g|svg)$/i,
+                test: /\.(gif|png|jpe?g)$/i,
                 use: [
                     {
                     loader: 'file-loader',
                     options: {
-                        name: '[path][name]-[hash:8].[ext]',
+                        name: '[name]-loaded.[ext]',
                     },
                 }],
-            }
+            },
         ]
     }
 };
